@@ -1,2 +1,13 @@
 次はグラフ化
 そのあとコンソール化を目指す
+
+眼圧
+
+・時間帯で変化する　https://onlinelibrary.wiley.com/doi/10.1111/aos.12408?
+・安静12~18mmHg　＊＊
+・軽いストレス +0.5~2.0mmHg　https://www.sciencedirect.com/science/article/pii/S0301051199000125
+・強いストレス +2.0~5.0mmHg　＊＊
+
+・レンジ：6~36mmHg　https://www.nature.com/articles/s41528-025-00507-3?
+・分解能：0.5mmHg　＊＊
+・誤差　：±0.5mmHg　＊＊

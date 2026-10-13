@@ -1,34 +1,56 @@
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111318">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Blink Monitor</title>
 
-<link rel="stylesheet" href="./css/style.css">
+<link
+    rel="stylesheet"
+    href="./css/style.css"
+>
 
+<!--
 <link
     rel="manifest"
-    href="./manifest.json">
+    href="./manifest.json"
+>
 
 <base href="/blink-monitor/">
+-->
 
 </head>
 
 <script>
-if(
-    "serviceWorker"
-    in navigator
-){
-
-    navigator.serviceWorker.register(
-        "./service-worker.js"
-    );
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => {
+                console.log("Service Worker registered");
+            })
+            .catch((error) => {
+                console.error("Service Worker registration failed:", error);
+            });
+    });
 }
 </script>
+
 
 <body>
 
 <div id="container">
+
+
+    <!-- =====================
+         左：カメラ・ボタン
+         ===================== -->
 
     <div id="left">
 
@@ -39,6 +61,7 @@ if(
             autoplay
             playsinline>
         </video>
+
 
         <div id="buttons">
 
@@ -54,11 +77,20 @@ if(
                 Clear History
             </button>
 
+            <button id="exportBtn">
+                Export CSV
+            </button>
+
         </div>
 
     </div>
 
-    <div id="right">
+
+    <!-- =====================
+         中央：情報
+         ===================== -->
+
+    <div id="infoArea">
 
         <div id="info">
             Loading...
@@ -72,30 +104,80 @@ if(
 
     </div>
 
-    <div id="history">
-    No history
+
+    <!-- =====================
+         右：グラフ
+         ===================== -->
+
+    <div id="graphArea">
+
+        <div class="charts">
+
+
+            <!-- BPM -->
+
+            <div class="chart-container">
+
+                <canvas
+                    id="blinkChart">
+                </canvas>
+
+            </div>
+
+
+            <!-- 瞬き間隔 CV -->
+
+            <div class="chart-container">
+
+                <canvas
+                    id="intervalCVChart">
+                </canvas>
+
+            </div>
+
+
+            <!-- 瞬き時間 -->
+
+            <div class="chart-container">
+
+                <canvas
+                    id="blinkDurationChart">
+                </canvas>
+
+            </div>
+
+
+            <!-- ストレススコア -->
+
+            <div class="chart-container">
+
+                <canvas
+                    id="stressChart">
+                </canvas>
+
+            </div>
+
+
+        </div>
+
     </div>
 
-    <canvas
-    id="blinkChart"
-    width="300"
-    height="150">
-</canvas>
 
 </div>
 
 
+<!-- =====================
+     JavaScript
+     ===================== -->
 
 <script
     type="module"
     src="./js/app.js">
 </script>
 
-<script src="./assets/libs/chart.umd.js"></script>
-
 <script
-    type="module"
-    src="./js/app.js">
+    src="./assets/libs/chart.umd.js">
 </script>
+
 
 </body>
