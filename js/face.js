@@ -1,24 +1,23 @@
+
 import {
     FaceLandmarker,
     FilesetResolver
-} from "./../assets/mediapipe/vision_bundle.mjs";
+} from "../assets/mediapipe/vision_bundle.mjs";
 
-export async function createFaceLandmarker(){
-
-    const vision =
-        await FilesetResolver.forVisionTasks(
-            "./../assets/mediapipe/wasm"
-        );
+export async function createFaceLandmarker() {
+    const vision = await FilesetResolver.forVisionTasks(
+        "../assets/mediapipe/wasm/"
+    );
 
     return await FaceLandmarker.createFromOptions(
         vision,
         {
-            baseOptions:{
+            baseOptions: {
                 modelAssetPath:
-                    "./../assets/models/face_landmarker.task"
+                    "../assets/models/face_landmarker.task"
             },
-            runningMode:"VIDEO",
-            numFaces:1
+            runningMode: "VIDEO",
+            numFaces: 1
         }
     );
 }
