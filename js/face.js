@@ -6,7 +6,7 @@ import {
 
 export async function createFaceLandmarker() {
     const vision = await FilesetResolver.forVisionTasks(
-        "../assets/mediapipe/wasm/"
+        "./assets/mediapipe/wasm/"
     );
 
     return await FaceLandmarker.createFromOptions(
@@ -14,7 +14,7 @@ export async function createFaceLandmarker() {
         {
             baseOptions: {
                 modelAssetPath:
-                    "../assets/models/face_landmarker.task"
+                    "./assets/models/face_landmarker.task"
             },
             runningMode: "VIDEO",
             numFaces: 1
