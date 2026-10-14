@@ -1,12 +1,13 @@
-
 import {
     FaceLandmarker,
     FilesetResolver
 } from "../assets/mediapipe/vision_bundle.mjs";
 
+const BASE_PATH = "/blinks/";
+
 export async function createFaceLandmarker() {
     const vision = await FilesetResolver.forVisionTasks(
-        "./assets/mediapipe/wasm/"
+        `${BASE_PATH}assets/mediapipe/wasm/`
     );
 
     return await FaceLandmarker.createFromOptions(
@@ -14,7 +15,7 @@ export async function createFaceLandmarker() {
         {
             baseOptions: {
                 modelAssetPath:
-                    "./assets/models/face_landmarker.task"
+                    `${BASE_PATH}assets/models/face_landmarker.task`
             },
             runningMode: "VIDEO",
             numFaces: 1
